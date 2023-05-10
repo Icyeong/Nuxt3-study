@@ -13,4 +13,12 @@ export default defineNuxtConfig({
       autoprefixer: {},
     },
   },
+  modules: ["@nuxt/content", "@pinia/nuxt"],
+  ssr: false,
+  // hybrid rendering
+  // routeRules: {
+  //   "/admin/**": { ssr: false },
+  //   "/blog/**": { swr: true },
+  //   "/api/v1/**": { cors: true },
+  // },
 });

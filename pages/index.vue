@@ -1,12 +1,26 @@
 <template>
   <div class="Main">
-    <h1>Hello Nuxt 3</h1>
+    <ContentDoc />
+    <div>
+      {{ products.data }}
+    </div>
     <IconsBell />
   </div>
 </template>
 
 <script setup>
+import { useCounterStore } from "~/stores/myStore";
+
 const { $sayHello } = useNuxtApp();
+const store = useCounterStore();
+
+const response = await $fetch("/api/hello");
+const { data: products } = await $fetch("/api/products", {});
+console.log(products.data);
+console.log(response);
+
 $sayHello("Yeong!");
 console.log(useNuxtApp());
+
+console.log(store);
 </script>

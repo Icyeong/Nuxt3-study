@@ -6,6 +6,10 @@
 </template>
 
 <script setup>
+definePageMeta({
+  middleware: "auth",
+});
+
 const { sayHello } = useUtils();
 
 sayHello();
