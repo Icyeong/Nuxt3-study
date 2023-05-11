@@ -2,21 +2,40 @@
   <div class="Main">
     <ContentDoc />
     <div>
-      {{ products.data }}
+      {{ pending ? "Loading" : products.data }}
     </div>
     <IconsBell />
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
+useHead({
+  title: "This is my homepage for Nuxt course",
+  meta: [
+    { name: "description", content: "My amazing site." },
+    {
+      name: "keywords",
+      content: "Nuxt.js, Vue.js, JavaScript, web development",
+    },
+    {
+      name: "og:title",
+      content: "https://example.com/images/nuxt-course-og-image.jpg",
+    },
+  ],
+  bodyAttrs: {
+    class: "test",
+  },
+  script: [{ children: "console.log('Hello world')" }],
+});
+
 import { useCounterStore } from "~/stores/myStore";
 
 const { $sayHello } = useNuxtApp();
 const store = useCounterStore();
 
 const response = await $fetch("/api/hello");
-const { data: products } = await $fetch("/api/products", {});
-console.log(products.data);
+const { data: products, pending } = await useLazyFetch("/api/products", {});
+// console.log(products.data);
 console.log(response);
 
 $sayHello("Yeong!");

@@ -8,7 +8,7 @@ export default defineNuxtRouteMiddleware(
       return navigateTo(to.fullPath);
     }
     // redirect to a login page
-    return navigateTo("/login");
+    // return navigateTo("/login");
   }
   // ,{global : true}
 );
